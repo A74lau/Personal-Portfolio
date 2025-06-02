@@ -1,16 +1,38 @@
 import Navbar from '@/components/Navbar';
 import ThreeDCircle from '@/components/ThreeDCircle';
+import TypewriterText from '@/components/TypewriterText';
 
 export default function Home() {
   return (
     <main className="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen text-white">
       <Navbar />
-      <section id="title" className="flex flex-col items-center justify-center min-h-screen pt-32">
-        <ThreeDCircle />
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 mt-12">Anson Lau</h1>
-        <p className="max-w-xl text-center text-lg md:text-xl opacity-80">
-          Hi! I'm Anson, a creative developer passionate about building interactive web experiences. I love blending technology and design to craft engaging, modern, and performant websites. Welcome to my portfolio!
-        </p>
+      <section id="title" className="flex flex-col md:flex-row items-center justify-center min-h-screen max-w-6xl mx-auto px-6 pt-32 gap-12">
+        {/* Left: Text content */}
+        <div className="flex-1 flex flex-col items-start justify-center">
+          <span className="text-cyan-400 text-base md:text-lg font-semibold mb-2 tracking-wide">Hi, my name is</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-2 leading-tight">Anson Lau.</h1>
+          <TypewriterText
+            text="I build things for the web."
+            className="text-3xl md:text-5xl font-extrabold text-gray-300 mb-6 leading-tight"
+            typingSpeed={40}
+            startDelay={800}
+          />
+          <p className="max-w-xl text-left text-base md:text-lg opacity-80 mb-8">
+            I'm a software engineer based in Toronto, ON specializing in building (and occasionally designing) exceptional websites, applications, and everything in between.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block px-6 py-3 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-md hover:bg-cyan-400 hover:text-gray-900 transition-colors duration-200"
+          >
+            Get In Touch
+          </a>
+        </div>
+        {/* Right: 3D Object */}
+        <div className="flex-1 w-full flex items-center justify-center md:justify-end">
+          <div className="w-full max-w-xl h-[400px] md:h-[550px] lg:h-[650px]">
+            <ThreeDCircle />
+          </div>
+        </div>
       </section>
       <section id="about" className="min-h-screen flex flex-col items-center justify-center py-24">
         <h2 className="text-3xl md:text-4xl font-semibold mb-10">About Me</h2>
@@ -22,17 +44,7 @@ export default function Home() {
           />
           <div className="max-w-2xl text-center md:text-left opacity-80">
             <p>
-            Hey there!
-
-My name is Anson, and I have recently graduated as a Computer Engineering student from the University of Waterloo, with an option in Artificial Intelligence!
-
-During my recent internship at Magnet Forensics, I contributed to the core digital forensics platform by using C#/.NET to maintain platform compatibility, enhance data extraction capabilities, and optimize performance for critical investigative workflows.
-
-Before that, I worked as a Software Developer Intern at Geotab, where I implemented error-handling policies using C#/.NET, developed a real-time API usage monitoring dashboard, and spearheaded cloud API rate-limiting policies.
-
-Earlier in my co-op journey, I gained diverse technical experience across multiple domains. At Brickeye, I engineered automation tests using Python and implemented user analytics tracking with Typescript. My time at Algal Engineering involved designing electrical systems while developing the company web application using Javascript, HTML/CSS. I also provided executive IT support for Ontario's Cabinet Office, troubleshooting systems for the Premier's office, and configuring secure devices for senior government officials. Additionally, I served as an On-Site Support Technician at Sun Life, where I adapted tech operations during COVID-19 and managed enterprise hardware deployments.
-
-Beyond my technical roles, I enjoy diving into tech side projects, exploring AI applications, collecting Pokémon cards, and playing badminton. I’m always eager to connect with fellow tech enthusiasts, so feel free to reach out! 😊
+            Hi, I'm Anson, a Computer Engineering graduate from the University of Waterloo with a passion for building impactful software. My experience spans full-stack development, cloud APIs, and AI, with internships at Magnet Forensics (C#/.NET forensics tools) and Geotab (real-time API systems). I thrive on solving complex problems—whether automating tests in Python, optimizing cloud infrastructure, or developing web applications. When I'm not coding, you'll find me exploring AI side projects or adding to my Pokémon card collection.
             </p>
           </div>
         </div>
@@ -93,7 +105,7 @@ Beyond my technical roles, I enjoy diving into tech side projects, exploring AI 
         </div>
       </section>
       <section id="experience" className="min-h-screen flex flex-col items-center justify-center py-24 bg-transparent">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-12">Experience</h2>
+        <h2 className="text-3xl md:text-4xl font-semibold mb-12">Work Experience</h2>
         <div className="relative max-w-2xl w-full">
           {/* Timeline vertical line */}
           <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400/60 to-cyan-800/10 rounded-full" style={{ zIndex: 0 }} />
