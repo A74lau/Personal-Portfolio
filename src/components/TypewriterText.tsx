@@ -6,6 +6,7 @@ interface TypewriterTextProps {
   className?: string;
   typingSpeed?: number;
   startDelay?: number;
+  repeatDelay?: number;
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({
@@ -13,6 +14,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   className = '',
   typingSpeed = 30,
   startDelay = 500,
+  repeatDelay = 7000,
 }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,22 +29,42 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   }, [startDelay]);
 
   useEffect(() => {
-    if (!isStarted) return;
+    if (!isStarted || currentIndex >= text.length) return;
 
-    if (currentIndex < text.length) {
-      const timer = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, typingSpeed);
+    const timer = setTimeout(() => {
+      setDisplayText(prev => prev + text[currentIndex]);
+      setCurrentIndex(prev => prev + 1);
+    }, typingSpeed);
 
-      return () => clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   }, [currentIndex, text, typingSpeed, isStarted]);
 
+  useEffect(() => {
+    if (isStarted && currentIndex === text.length) {
+      const repeatTimer = setTimeout(() => {
+        setDisplayText('');
+        setCurrentIndex(0);
+        setIsStarted(false);
+      }, repeatDelay);
+
+      return () => clearTimeout(repeatTimer);
+    }
+  }, [currentIndex, text.length, repeatDelay, isStarted]);
+
+  useEffect(() => {
+    if (!isStarted && currentIndex === 0 && displayText === '' && text.length > 0) {
+      const restartTimer = setTimeout(() => {
+        setIsStarted(true);
+      }, 10);
+
+      return () => clearTimeout(restartTimer);
+    }
+  }, [isStarted, currentIndex, displayText, text.length]);
+
   return (
-    <p className={className}>
+    <p className={className} suppressHydrationWarning={true}>
       {displayText}
-      <span className="animate-blink">|</span>
+      {currentIndex < text.length && <span className="animate-blink">|</span>}
     </p>
   );
 };
