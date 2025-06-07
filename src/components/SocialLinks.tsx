@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
 
 const socialLinks = [
   { icon: FaGithub, url: 'https://github.com/A74lau/' }, 

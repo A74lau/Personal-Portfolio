@@ -3,6 +3,7 @@ import ThreeDCircle from '@/components/ThreeDCircle';
 import TypewriterText from '@/components/TypewriterText';
 import SocialLinks from '@/components/SocialLinks';
 import ProjectCard from '@/components/ProjectCard';
+import Image from 'next/image';
 
 // Define project data
 const projectsData = [
@@ -76,18 +77,21 @@ export default function Home() {
         <h2 className="text-3xl md:text-4xl font-semibold mb-10">About Me</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-10">
           {/* Single Picture */}
-          <img
+          <Image
             src="/pic3.jpg"
             alt="About Me Picture"
-            className="w-136 h-94 object-cover object-bottom rounded-lg shadow-lg border-4 border-cyan-500"
-          />
+            width={500}
+            height={350}
+            quality={100}
+            priority
+            className="w-136 h-94 object-cover object-bottom rounded-lg shadow-lg border-4 border-cyan-500"          />
           <div className="max-w-2xl text-center md:text-left opacity-80">
             <p className="text-base md:text-lg leading-relaxed text-white opacity-90">
-              Hi, I'm Anson, a Computer Engineering graduate from the University of Waterloo with a passion for building impactful software. 
+              Hi, I&apos;m Anson, a Computer Engineering graduate from the University of Waterloo with a passion for building impactful software. 
             </p>
             <br></br>
             <p className="text-base md:text-lg leading-relaxed text-white opacity-90">
-            My experience spans full-stack development, cloud APIs, and AI, with internships at Magnet Forensics and Geotab. I thrive on solving complex problems—whether automating tests in Python, optimizing cloud infrastructure, or developing web applications. When I'm not coding, you'll find me exploring AI side projects or adding to my Pokémon card collection.
+            My experience spans full-stack development, cloud APIs, and AI, with internships at Magnet Forensics and Geotab. I thrive on solving complex problems—whether automating tests in Python, optimizing cloud infrastructure, or developing web applications. When I&apos;m not coding, you&apos;ll find me exploring AI side projects or adding to my Pokémon card collection.
             </p>
           </div>
         </div>
@@ -98,7 +102,7 @@ export default function Home() {
           <div className="flex-1 flex flex-col justify-center mb-6 md:mb-0">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Skills</h2>
             <p className="text-white/90 text-base md:text-lg">
-            Throughout my degree, internships, and personal projects, I've gained experience working with the following languages:
+            Throughout my degree, internships, and personal projects, I&apos;ve gained experience working with the following languages:
             </p>
           </div>
           {/* Right: Skills grid */}
@@ -232,7 +236,7 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-1">Electrical Engineer Intern <span className="text-cyan-400">@ Algal Engineering</span></h3>
                 <p className="text-sm text-gray-300 mb-2">Markham, ON &middot; May 2022 - Aug 2022</p>
                 <ul className="list-disc list-inside text-base opacity-90 pl-4">
-                  <li>Developed the company's web application utilizing JavaScript, HTML, and CSS.</li>
+                  <li>Developed the company&apos;s web application utilizing JavaScript, HTML, and CSS.</li>
                   <li>Designed electrical wiring diagrams for nuclear projects, power systems, and building services using AutoCAD.</li>
                   <li>Conducted short circuit analysis and electrical load calculations using ETAP software for 10+ projects.</li>
                 </ul>

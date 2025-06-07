@@ -1,11 +1,12 @@
 'use client';
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sky } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
+import * as THREE from 'three';
 
-// Helper for animated ring
-function AnimatedRing({ radius, tube, color, speed, arc = 1, offset = 0, segments = 100 }: {
+// Define proper types for component props
+interface AnimatedRingProps {
   radius: number;
   tube: number;
   color: string;
@@ -13,8 +14,19 @@ function AnimatedRing({ radius, tube, color, speed, arc = 1, offset = 0, segment
   arc?: number;
   offset?: number;
   segments?: number;
-}) {
-  const ref = useRef<any>(null);
+}
+
+interface DotsProps {
+  radius: number;
+  count: number;
+  color: string;
+  speed: number;
+  y?: number;
+}
+
+// Helper for animated ring
+function AnimatedRing({ radius, tube, color, speed, arc = 1, offset = 0, segments = 100 }: AnimatedRingProps) {
+  const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (ref.current) {
       ref.current.rotation.z = clock.getElapsedTime() * speed + offset;
@@ -37,14 +49,8 @@ function AnimatedRing({ radius, tube, color, speed, arc = 1, offset = 0, segment
 }
 
 // Helper for dots/circles
-function Dots({ radius, count, color, speed, y = 0 }: {
-  radius: number;
-  count: number;
-  color: string;
-  speed: number;
-  y?: number;
-}) {
-  const group = useRef<any>(null);
+function Dots({ radius, count, color, speed, y = 0 }: DotsProps) {
+  const group = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (group.current) {
       group.current.rotation.z = clock.getElapsedTime() * speed;
@@ -132,4 +138,4 @@ const ThreeDCircle = () => {
   );
 };
 
-export default ThreeDCircle; 
+export default ThreeDCircle;
