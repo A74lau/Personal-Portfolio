@@ -7,7 +7,6 @@ interface ProjectCardProps {
   description: string;
   technologies: string[];
   externalLink?: string;
-  githubLink?: string; // Added GitHub link based on image hint
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -15,7 +14,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   technologies,
   externalLink,
-  githubLink
 }) => {
   return (
     <div className="bg-[#112240] rounded-md p-6 flex flex-col justify-between h-full transition-transform duration-200 hover:-translate-y-2 hover:shadow-xl border border-transparent hover:border-cyan-700">

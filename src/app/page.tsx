@@ -11,35 +11,30 @@ const projectsData = [
     description: 'A Python script that uses the Instagram API to automate posts and monitor comments for song suggestions, integrates the Spotify API to search and select tracks, and stores user-selected songs in a local database.',
     technologies: ['Python', 'SQLite', 'Spotify API', 'Instagram API'],
     externalLink: 'https://github.com/A74lau/MelodyGram',
-    githubLink: '#',
   },
   {
     title: 'Magic The Gathering - Commander Classifier',
     description: 'A supervised learning model that predicts optimal Magic: The Gathering deck themes for new commanders by analyzing card features and theme frequencies.',
     technologies: ['Python', 'Tensorflow', 'SKlearn', 'Numpy', 'Pandas', 'Sryfall API', 'Jupyter Notebook'],
     externalLink: 'https://github.com/A74lau/MTG-Commander-Classifier',
-    githubLink: '#', 
   },
   {
     title: 'PokeSet Tracker',
     description: 'A web application that pulls real-time Pokemon TCG card data from the TCGdex API, featuring set filtering, card search, and responsive UI for collectors',
     technologies: ['Java', 'Springboot', 'HTML/CSS', 'ThymeLeaf', 'Maven', 'TCGdex API'],
     externalLink: 'https://github.com/A74lau/Poke-Tracker',
-    githubLink: '#',
   },
   {
     title: 'ChatterAI',
     description: 'A real-time chat application with an AI chatbot and Firebase back-end for storing conversations and responses, built with a modern web framework.',
     technologies: ['Typescript', 'React', 'CSS', 'Firebase', 'Next.js', 'OpenAI API'],
     externalLink: 'https://github.com/A74lau/ChatterAI', 
-    githubLink: '#',
   },
   {
     title: 'Travel Advisor App',
     description: 'A travel advisor web app that helps users discover destinations, plan trips, and explore points of interest with interactive features like maps, weather, and recommendations.',
     technologies: ['Javascript', 'HTML', 'CSS'],
     externalLink: 'https://github.com/A74lau/Travel_Advisor-App',
-    githubLink: '#',
   },
 ];
 
@@ -274,7 +269,6 @@ export default function Home() {
               description={project.description}
               technologies={project.technologies}
               externalLink={project.externalLink}
-              githubLink={project.githubLink}
             />
           ))}
         </div>

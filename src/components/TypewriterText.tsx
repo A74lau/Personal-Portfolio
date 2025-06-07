@@ -16,20 +16,30 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   startDelay = 500,
   repeatDelay = 7000,
 }) => {
+  const [mounted, setMounted] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
 
+  // Handle client-side mounting
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Start typing after initial delay
+  useEffect(() => {
+    if (!mounted) return;
+    
     const startTimer = setTimeout(() => {
       setIsStarted(true);
     }, startDelay);
 
     return () => clearTimeout(startTimer);
-  }, [startDelay]);
+  }, [mounted, startDelay]);
 
+  // Handle typing animation
   useEffect(() => {
-    if (!isStarted || currentIndex >= text.length) return;
+    if (!mounted || !isStarted || currentIndex >= text.length) return;
 
     const timer = setTimeout(() => {
       setDisplayText(prev => prev + text[currentIndex]);
@@ -37,32 +47,39 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
     }, typingSpeed);
 
     return () => clearTimeout(timer);
-  }, [currentIndex, text, typingSpeed, isStarted]);
+  }, [mounted, currentIndex, text, typingSpeed, isStarted]);
 
+  // Handle repeat animation
   useEffect(() => {
-    if (isStarted && currentIndex === text.length) {
-      const repeatTimer = setTimeout(() => {
-        setDisplayText('');
-        setCurrentIndex(0);
-        setIsStarted(false);
-      }, repeatDelay);
+    if (!mounted || !isStarted || currentIndex !== text.length) return;
 
-      return () => clearTimeout(repeatTimer);
-    }
-  }, [currentIndex, text.length, repeatDelay, isStarted]);
+    const repeatTimer = setTimeout(() => {
+      setDisplayText('');
+      setCurrentIndex(0);
+      setIsStarted(false);
+    }, repeatDelay);
 
+    return () => clearTimeout(repeatTimer);
+  }, [mounted, currentIndex, text.length, repeatDelay, isStarted]);
+
+  // Restart typing after reset
   useEffect(() => {
-    if (!isStarted && currentIndex === 0 && displayText === '' && text.length > 0) {
-      const restartTimer = setTimeout(() => {
-        setIsStarted(true);
-      }, 10);
+    if (!mounted || isStarted || currentIndex !== 0 || displayText !== '' || text.length === 0) return;
 
-      return () => clearTimeout(restartTimer);
-    }
-  }, [isStarted, currentIndex, displayText, text.length]);
+    const restartTimer = setTimeout(() => {
+      setIsStarted(true);
+    }, 10);
+
+    return () => clearTimeout(restartTimer);
+  }, [mounted, isStarted, currentIndex, displayText, text.length]);
+
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return <p className={className}></p>;
+  }
 
   return (
-    <p className={className} suppressHydrationWarning={true}>
+    <p className={className}>
       {displayText}
       {currentIndex < text.length && <span className="animate-blink">|</span>}
     </p>
