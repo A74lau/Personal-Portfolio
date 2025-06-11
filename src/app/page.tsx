@@ -55,7 +55,7 @@ export default function Home() {
             startDelay={800}
           />
           <p className="max-w-xl text-left text-base md:text-lg opacity-80 mb-8">
-          Toronto-based software developer turning double-doubles into clean, efficient code.
+          Toronto-based software developer turning double-doubles into clean, functional code!
           </p>
           <SocialLinks />
           <a
